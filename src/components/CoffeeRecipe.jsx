@@ -1,9 +1,9 @@
 import "./CoffeeRecipe.css";
 
 function getrating(rating) {
-  if (rating === -1) return;
+  if (rating[0] === -1) return;
   let ratingstring = "";
-  for (let index = 0; index < rating; index++) {
+  for (let index = 0; index < rating[0]; index++) {
     ratingstring += "☕";
   }
   switch (rating) {
@@ -25,7 +25,7 @@ function getrating(rating) {
     default:
       break;
   }
-  return ratingstring;
+  return ratingstring + " (votes: " + rating[1] + ")";
 }
 function getGrinding(grind) {
   let string = "";
@@ -62,7 +62,7 @@ const CoffeeInfo = (props) => {
     grindingsettings = 1,
     litresWater = 1,
     typeOfCoffee = "Unknown",
-    rating = -1,
+    rating = [-1, 0],
   } = { ...props };
 
   return (
@@ -74,14 +74,14 @@ const CoffeeInfo = (props) => {
         </li>
         <li>
           <span>Litres of Water needed </span>
-          {litresWater}
+          {litresWater}L
         </li>
         <li>
           <span>Brand </span>
           {typeOfCoffee}
         </li>
         <li>
-          <span>{rating > 0 ? "Rating " : ""}</span>
+          <span>{rating[0] > 0 ? "Rating " : ""}</span>
           {getrating(rating)}
         </li>
       </ul>

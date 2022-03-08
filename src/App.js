@@ -15,7 +15,7 @@ class App extends Component {
       typeOfCoffee: "Awesome Coffee",
       grindingsettings: 4,
       litresWater: 1.5,
-      rating: 3,
+      rating: [3, 340],
       onClick: this.updateCoffee,
     };
   }
