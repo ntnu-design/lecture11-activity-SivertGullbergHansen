@@ -1,35 +1,24 @@
-import React, { Component } from 'react';
-import CoffeeButton from './CoffeeButton';
-import './CoffeeControl.css';
-import Thermos from './Thermos';
+import React, { Component } from "react";
+import CoffeeButton from "./CoffeeButton";
+import "./CoffeeControl.css";
+import Thermos from "./Thermos";
 
 class CoffeeControl extends Component {
-    constructor(props) {
-        super(props);
-        //Careful! This is an anti-pattern (more in the future)
-        this.state = { ...props }
-    }
+  render() {
+    return (
+      <div className="CoffeeControl">
+        <Thermos {...this.props} />
 
-    handleOnClick = (newLiters) => {
-        console.log(newLiters);
-        this.setState({ litersBrewed: newLiters });
-    }
+        <div className="flex-columns">
+          <CoffeeButton litersToBrew="2.2" onClick={this.props.onClick} />
 
-    render() {
-        return (
-            <div className="CoffeeControl">
-                <Thermos {...this.state} />
+          <CoffeeButton litersToBrew="1.1" onClick={this.props.onClick} />
 
-                <div className="flex-columns">
-                    <CoffeeButton litersToBrew='2.2' onClick={this.handleOnClick}/>
-
-                    <CoffeeButton litersToBrew='1.1' onClick={this.handleOnClick}/>
-
-                    <CoffeeButton litersToBrew='0.5' onClick={this.handleOnClick}/>
-                </div>
-            </div>
-        );
-    }
+          <CoffeeButton litersToBrew="0.5" onClick={this.props.onClick} />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default CoffeeControl;
