@@ -1,0 +1,16 @@
+.CoffeeRecipe {
+    font-size: 2rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.CoffeeRecipe ul {
+    list-style-type: none;
+    /* Relative to parent - component fontsize */
+    line-height: 1.6em;
+}
+
+
+.CoffeeRecipe ul li span {
+    font-weight: 200;
+}

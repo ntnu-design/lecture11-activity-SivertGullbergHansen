@@ -1,62 +1,85 @@
-import './App.css';
-import CoffeeButton from './components/CoffeeButton';
-import CoffeeControl from './components/CoffeeControl';
-import CoffeeInfo from './components/CoffeeInfo';
-import Thermos from './components/Thermos';
+import { Component } from "react";
+import "./App.css";
+import CoffeeButton from "./components/CoffeeButton";
+import CoffeeControl from "./components/CoffeeControl";
+import CoffeeInfo from "./components/CoffeeInfo";
+import Thermos from "./components/Thermos";
+import CoffeeRecipe from "./components/CoffeeRecipe";
 
-function App() {
-  const coffee = { brewedAt: '2022-02-28T09:17:57.652Z', litersBrewed: '1.5' };
-  return (
-    <div className="App">
-      <header></header>
-      <main>
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      brewedAt: "2022-02-28T09:17:57.652Z",
+      litersBrewed: "1.5",
+      typeOfCoffee: "Awesome Coffee",
+      grindingsettings: 4,
+      litresWater: 1.5,
+      rating: 3,
+      onClick: this.updateCoffee,
+    };
+  }
 
-        <div id="examples">
-          <h1>Examples</h1>
-          <Thermos {...coffee} />
+  updateCoffee = (newLiters) => {
+    this.setState({ litersBrewed: newLiters });
+  };
 
-          {/* <Thermos {...coffee} className="neumorphism-card"/> */}
+  render() {
+    return (
+      <div className="App">
+        <header></header>
+        <main>
+          <div id="examples">
+            <h1>Examples</h1>
+            <Thermos {...this.state} />
 
-          <CoffeeInfo {...coffee} />
+            {/* <Thermos {...this.state} className="neumorphism-card"/> */}
 
-          <CoffeeButton />
+            <CoffeeInfo {...this.state} />
 
-          <CoffeeButton litersToBrew='1.1' />
+            <CoffeeRecipe {...this.state} />
 
-          <CoffeeButton litersToBrew='0.5' />
+            <CoffeeButton {...this.state} />
 
-          <CoffeeButton litersToBrew='3.1' />
-        </div>
+            <CoffeeButton litersToBrew="1.1" {...this.state} />
 
-        <span>This is Thermos and CoffeeInfo</span>
-        <section id="top-container" className="container neumorphism-card">
-          <Thermos {...coffee} />
-          <CoffeeInfo {...coffee} />
-        </section>
+            <CoffeeButton litersToBrew="0.5" {...this.state} />
 
-        <span>This is Thermos and CoffeeButtons (individual components)</span>
-        <section id="prepare-coffee-container" className="container neumorphism-card">
-          <Thermos {...coffee} />
-
-          <div className="flex-columns">
-            <CoffeeButton litersToBrew='2.1' />
-
-            <CoffeeButton litersToBrew='1.1' />
-
-            <CoffeeButton litersToBrew='0.5' />
+            <CoffeeButton litersToBrew="3.1" {...this.state} />
           </div>
 
-        </section>
+          <span>This is Thermos and CoffeeInfo</span>
+          <section id="top-container" className="container neumorphism-card">
+            <Thermos {...this.state} />
+            <CoffeeInfo {...this.state} />
+          </section>
 
+          <span>This is Thermos and CoffeeButtons (individual components)</span>
+          <section
+            id="prepare-coffee-container"
+            className="container neumorphism-card"
+          >
+            <Thermos {...this.state} />
 
-        <span>This is CoffeeControl (composition: Thermos and CoffeeButton(s)))</span>
-        <section>
-          <CoffeeControl {...coffee} />
-        </section>
+            <div className="flex-columns">
+              <CoffeeButton litersToBrew="2.1" {...this.state} />
 
-      </main>
-    </div>
-  );
+              <CoffeeButton litersToBrew="1.1" {...this.state} />
+
+              <CoffeeButton litersToBrew="0.5" {...this.state} />
+            </div>
+          </section>
+
+          <span>
+            This is CoffeeControl (composition: Thermos and CoffeeButton(s)))
+          </span>
+          <section>
+            <CoffeeControl {...this.state} />
+          </section>
+        </main>
+      </div>
+    );
+  }
 }
 
 export default App;
